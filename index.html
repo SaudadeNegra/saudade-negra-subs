@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saudade Negra Subs</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: rgba(8, 8, 12, 0.72);
+      --panel-strong: rgba(10, 10, 16, 0.88);
+      --text: #f3f3f3;
+      --muted: #c5c5c5;
+      --green: #43d17b;
+      --yellow: #f0c94a;
+      --red: #ff4d5e;
+      --shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    body {
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.68)),
+        url('assets/background.jpg') center center / cover no-repeat fixed;
+      background-color: var(--bg);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.14);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1280px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0 60px;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 0 26px;
+    }
+
+    .banner {
+      width: min(900px, 100%);
+      background: linear-gradient(180deg, rgba(18, 18, 26, 0.9), rgba(10, 10, 16, 0.82));
+      border: 1px solid rgba(255, 80, 80, 0.12);
+      border-radius: 28px;
+      box-shadow:
+        var(--shadow),
+        0 0 22px rgba(150, 10, 10, 0.22),
+        0 0 48px rgba(120, 0, 0, 0.14);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .banner img {
+      width: 100%;
+      display: block;
+      max-height: 260px;
+      object-fit: cover;
+    }
+
+    .banner-content {
+      padding: 18px 22px 24px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      letter-spacing: 0.03em;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .telegram-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, #229ed9, #1277a8);
+      box-shadow: 0 10px 24px rgba(18, 119, 168, 0.35);
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .telegram-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(18, 119, 168, 0.45);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(210px, 320px));
+      justify-content: center;
+      justify-items: center;
+      gap: 26px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .project-card {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      min-height: 320px;
+      aspect-ratio: 2 / 3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      isolation: isolate;
+      margin: 0 auto;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.015);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 18px 18px;
+      height: 16px;
+      border-radius: 999px;
+      filter: blur(22px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .status-completo::after {
+      background: var(--green);
+      box-shadow: 0 0 35px var(--green);
+    }
+
+    .status-completo {
+      box-shadow:
+        var(--shadow),
+        0 0 18px rgba(67, 209, 123, 0.16),
+        0 0 34px rgba(67, 209, 123, 0.09);
+    }
+
+    .status-andamento::after {
+      background: var(--yellow);
+      box-shadow: 0 0 35px var(--yellow);
+    }
+
+    .status-andamento {
+      box-shadow:
+        var(--shadow),
+        0 0 18px rgba(240, 201, 74, 0.18),
+        0 0 36px rgba(240, 201, 74, 0.10);
+    }
+
+    .status-cancelado::after {
+      background: var(--red);
+      box-shadow: 0 0 35px var(--red);
+    }
+
+    .status-cancelado {
+      box-shadow:
+        var(--shadow),
+        0 0 18px rgba(255, 77, 94, 0.16),
+        0 0 34px rgba(255, 77, 94, 0.09);
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .status-completo .status-badge { color: var(--green); }
+    .status-andamento .status-badge { color: var(--yellow); }
+    .status-cancelado .status-badge { color: var(--red); }
+
+    .card-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px 18px 18px;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.88));
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: bold;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.92));
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .project-card:hover .card-overlay {
+      opacity: 1;
+    }
+
+    .overlay-title {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .overlay-synopsis {
+      margin: 0;
+      color: #f2f2f2;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .overlay-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .overlay-pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.82rem;
+    }
+
+    .legend {
+      width: fit-content;
+      margin: 22px auto 0;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(5, 5, 8, 0.68);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      box-shadow: var(--shadow);
+    }
+    .hidden-project {
+      display: none !important;
+    }
+
+    .site-note {
+      width: min(980px, 100%);
+      margin: 38px auto 0;
+      padding: 20px 24px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(14, 14, 20, 0.82), rgba(8, 8, 12, 0.9));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .site-note p {
+      margin: 0;
+      color: #d7d7d7;
+      line-height: 1.6;
+      font-size: 0.98rem;
+    }
+
+    .site-note strong {
+      color: #ffffff;
+    }
+
+    .site-note a {
+      color: #7ecfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .site-note a:hover {
+      text-decoration: underline;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #d6d6d6;
+      font-size: 0.92rem;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .green { color: var(--green); }
+    .yellow { color: var(--yellow); }
+    .red { color: var(--red); }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 24px, 1280px);
+        padding-top: 18px;
+      }
+
+      .projects {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .project-card {
+        min-height: 260px;
+      }
+
+      .card-overlay {
+        opacity: 1;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="banner">
+        <img src="assets/banner.jpg" alt="Banner da Saudade Negra Subs" />
+      </div>
+        <div class="telegram-content">
+          <a class="telegram-link" href="https://t.me/SaudadeNegra" target="_blank" rel="noopener noreferrer">Entrar no grupo do Telegram</a>
+        </div>
+      <div class="legend hidden-project" aria-label="Legenda do estado dos projectos">
+        <span class="legend-item"><span class="legend-dot green"></span> Completo</span>
+        <span class="legend-item"><span class="legend-dot yellow"></span> Em andamento</span>
+        <span class="legend-item"><span class="legend-dot red"></span> Cancelado</span>
+      </div>
+    </section>
+
+    <section class="projects">
+      <article class="project-card status-andamento">
+        <img src="assets/texhnolyze.jpg" alt="Capa de Texhnolyze" />
+        <span class="status-badge">Em andamento</span>
+        <div class="card-footer">
+          <h2 class="card-title">Texhnolyze</h2>
+        </div>
+        <div class="card-overlay">
+          <h3 class="overlay-title">Texhnolyze</h3>
+          <p class="overlay-synopsis">Numa cidade subterrânea decadente, facções em guerra e um futuro podre cruzam-se com a mutilação, a identidade e o colapso humano.</p>
+          <div class="overlay-meta">
+            <span class="overlay-pill">Lançados: 8</span>
+            <span class="overlay-pill">Total: 22</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card status-completo hidden-project">
+        <img src="assets/serial-experiments-lain.jpg" alt="Capa de Serial Experiments Lain" />
+        <span class="status-badge">Completo</span>
+        <div class="card-footer">
+          <h2 class="card-title">Nome</h2>
+        </div>
+        <div class="card-overlay">
+          <h3 class="overlay-title">Nome</h3>
+          <p class="overlay-synopsis">Sinopse</p>
+          <div class="overlay-meta">
+            <span class="overlay-pill">Lançados: 0</span>
+            <span class="overlay-pill">Total: 0</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card status-cancelado hidden-project">
+        <img src="assets/ergo-proxy.jpg" alt="Capa de Ergo Proxy" />
+        <span class="status-badge">Cancelado</span>
+        <div class="card-footer">
+          <h2 class="card-title">Nome</h2>
+        </div>
+        <div class="card-overlay">
+          <h3 class="overlay-title">Nome</h3>
+          <p class="overlay-synopsis">Sinopse</p>
+          <div class="overlay-meta">
+            <span class="overlay-pill">Lançados: 0</span>
+            <span class="overlay-pill">Total: 0</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="site-note" aria-label="Informação adicional">
+      <p><strong>Nota:</strong> Toda a informação detalhada sobre os lançamentos, bem como o acesso ao conteúdo disponível da fansub, é centralizada através do nosso <a href="https://t.me/SaudadeNegra" target="_blank" rel="noopener noreferrer">grupo do Telegram</a>.</p>
+      <p style="margin-top: 10px; font-size: 0.9rem; color: #a9a9a9;">© 2026 Saudade Negra Subs. Todos os direitos reservados.</p>
+    </section>
+  </main>
+</body>
+</html>
