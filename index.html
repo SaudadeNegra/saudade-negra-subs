@@ -62,6 +62,12 @@
       margin: 0 auto;
       padding: 28px 0 60px;
     }
+	.site-scale {
+      transform: scale(0.9);
+      transform-origin: top center;
+      width: 125%;
+      margin-left: -12.5%;
+    }
 
     .hero {
       display: flex;
@@ -93,6 +99,62 @@
 
     .banner-content {
       padding: 18px 22px 24px;
+    }
+	.about-banner {
+	  position: relative;
+	}
+	.about-banner:hover .banner-about {
+	  opacity: 1;
+    }
+	
+	.about-banner:hover .banner-about-scroll {
+      animation: scrollAbout 12s linear forwards;
+    }
+
+    @keyframes scrollAbout {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-300px);
+      }
+    }
+	
+    .banner-about {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      padding: 0
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.92));
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .about-banner:hover .banner-about {
+      opacity: 1;
+    }
+
+    .banner-about-scroll {
+      position: absolute;
+	  top: 50%;
+      left: 18px;
+      right: 6px;
+	  transform: translateY(0);
+    }
+
+    .banner-about-text {
+      margin: 0 0 10px;
+      color: #ececec;
+      line-height: 1.55;
+      font-size: 0.95rem;
+      width: 100%;
+      max-width: none;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .banner-about-text:last-child {
+      margin-bottom: 0;
     }
 
     .title {
@@ -363,6 +425,75 @@
     .green { color: var(--green); }
     .yellow { color: var(--yellow); }
     .red { color: var(--red); }
+	
+	.nostalgia-cta-logo {
+	  display: block;
+	  max-height: 72px;
+	  width: auto;
+	  margin: 12px auto;
+	}
+	
+	.nostalgia-cta {
+	  display: block;
+  	  width: min(900px, 100%);
+  	  margin: 8px auto 0;
+  	  min-height: 50px;
+  	  border-radius: 24px;
+  	  overflow: hidden;
+  	  text-decoration: none;
+  	  position: relative;
+  	  border: 1px solid rgba(255, 190, 210, 0.16);
+  	  box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(255, 150, 190, 0.18),
+        0 0 34px rgba(255, 120, 170, 0.12);
+  	  background:
+        linear-gradient(rgba(16, 10, 18, 0.42), rgba(16, 10, 18, 0.58)),
+	  url('assets/nostalgia-background.jpg') center center / cover no-repeat;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+	}
+
+	.nostalgia-cta:hover {
+  	  transform: translateY(-2px);
+  	  box-shadow:
+        0 18px 46px rgba(0, 0, 0, 0.5),
+        0 0 24px rgba(255, 170, 205, 0.24),
+        0 0 42px rgba(255, 125, 180, 0.16);
+  	  filter: brightness(1.03);
+	}
+	
+	.nostalgia-cta-content {
+	  min-height: 50px;
+  	  display: flex;
+  	  flex-direction: column;
+  	  justify-content: center;
+  	  align-items: center;
+  	  gap: 0;
+  	  padding: 4px 12px;
+  	  text-align: center;
+	}
+
+	.nostalgia-cta-content img {
+  	  display: block;
+  	  max-height: 38px;
+  	  width: auto;
+	}
+
+	.nostalgia-cta-title {
+  	  font-size: 2rem;
+  	  line-height: 1;
+  	  font-weight: bold;
+  	  color: #f6c7d7;
+  	  text-shadow:
+        0 0 10px rgba(255, 185, 210, 0.22),
+        0 0 22px rgba(255, 150, 190, 0.12);
+    }
+
+	.nostalgia-cta-subtitle {
+	  font-size: 1rem;
+  	  color: #f3e5ed;
+  	  letter-spacing: 0.02em;
+	}
 
     @media (max-width: 720px) {
       .page {
@@ -387,14 +518,45 @@
   </style>
 </head>
 <body>
+  <div class="site-scale">
   <main class="page">
     <section class="hero">
-      <div class="banner">
-        <img src="assets/banner.jpg" alt="Banner da Saudade Negra Subs" />
+	  <div class="banner about-banner">
+	    <img src="assets/banner.jpg" alt="Banner da Saudade Negra Subs" />
+        <div class="banner-about">
+		  <div class="banner-about-scroll">
+            <h3 class="banner-about-title">Sobre nós</h3>
+            <p class="banner-about-text">
+            A <strong>Saudade Negra Subs</strong> nasce da amizade entre quem nunca se reviu no anime descartável. Partilhamos o mesmo gosto pelo desconforto, pelo silêncio pesado, pelas histórias que não procuram agradar, mas marcar. Não estamos aqui para seguir tendências, estamos aqui para ir atrás do que fica.
+            </p>
+            <p class="banner-about-text">
+            O nosso caminho é assumidamente negro. Procuramos obras onde a identidade se constrói na decadência, na violência, na introspecção e na estranheza. Anime que respira atmosfera, que vive do detalhe, que deixa espaço para pensar e que muitas vezes incomoda mais do que entretém.
+            </p>
+            <p class="banner-about-text">
+            Traduzimos com respeito pelo original, mas também com consciência do que estamos a trabalhar. Cada projecto não é só mais um episódio, é uma peça de um catálogo que queremos coerente, com identidade e com memória.
+            </p>
+			<p class="banner-about-text">
+			Este espaço não é apenas um site, é um ponto de encontro para quem procura algo diferente. Aqui acompanhas o estado dos projectos, o que está a ser feito e o que ainda está por vir. O resto vive fora daqui, mas a base mantém-se, amizade, visão comum e a vontade de dar destaque ao anime que merece mais do que ser esquecido.
+			</p>
+			<p class="banner-about-text">
+			Se procuras conforto, talvez não seja aqui. Se procuras algo que te fique na cabeça, então estás no sítio certo.
+			</p>
+		  </div>
+		</div>
       </div>
-        <div class="telegram-content">
-          <a class="telegram-link" href="https://t.me/SaudadeNegra" target="_blank" rel="noopener noreferrer">Entrar no grupo do Telegram</a>
+	  <a href="https://nostalgia.saudadenegra.pt" target="_blank" rel="noopener noreferrer" class="nostalgia-cta">
+	    <div class="nostalgia-cta-content">
+		  <img src="assets/nostalgia-logo.png" alt="Banner da Nostalgia" />
         </div>
+      </a>
+	  
+	  
+      <!--<div class="telegram-content">
+	    <a href="https://t.me/SaudadeNegra" target="_blank" rel="noopener noreferrer" class="nostalgia-cta">
+		<img src="assets/nostalgia-logo.png" alt="Nostalgia" class="nostalgia-cta-logo" />
+		</a>-->
+          <!--<a class="telegram-link" href="https://t.me/SaudadeNegra" target="_blank" rel="noopener noreferrer">Entrar no grupo do Telegram</a>
+      </div>-->
       <div class="legend hidden-project" aria-label="Legenda do estado dos projectos">
         <span class="legend-item"><span class="legend-dot green"></span> Completo</span>
         <span class="legend-item"><span class="legend-dot yellow"></span> Em andamento</span>
@@ -477,5 +639,6 @@
       <p style="margin-top: 10px; font-size: 0.9rem; color: #a9a9a9;">© 2026 Saudade Negra Subs. Todos os direitos reservados.</p>
     </section>
   </main>
+</div>
 </body>
 </html>
